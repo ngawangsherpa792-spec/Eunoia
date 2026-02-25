@@ -7,14 +7,24 @@ app = Flask(__name__)
 
 # Database Configuration
 basedir = os.path.abspath(os.path.dirname(__file__))
+
+# Vercel handles the file system as read-only, except for /tmp
+if os.environ.get('VERCEL'):
+    db_path = os.path.join('/tmp', 'eunoia.db')
+else:
+    db_path = os.path.join(basedir, 'eunoia.db')
+
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL') or \
-    'sqlite:///' + os.path.join(basedir, 'eunoia.db')
+    'sqlite:///' + db_path
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 # Ensure tables are created
-with app.app_context():
-    db.create_all()
+try:
+    with app.app_context():
+        db.create_all()
+except Exception as e:
+    print(f"Database initialization error: {e}")
 
 class ContactMessage(db.Model):
     """Model for storing contact form submissions."""
