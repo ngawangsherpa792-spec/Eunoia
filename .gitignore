@@ -7,6 +7,8 @@ __pycache__/
 venv/
 env/
 ENV/
+.venv/
+
 
 # Flask
 instance/
@@ -27,6 +29,7 @@ Thumbs.db
 
 # Databases
 *.db
+*.sqlite3
 
 # Vercel
 .vercel
