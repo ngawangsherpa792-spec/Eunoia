@@ -62,7 +62,7 @@ COURSES = {
         'description': 'Master the art of digital defense. From ethical hacking to advanced threat analysis.',
         'duration': '12 Weeks',
         'level': 'Beginner to Advanced',
-        'price': 'Rs. 45,000',
+        'price': 'Rs. 15000',
         'icon': 'shield',
         'color': '#00d4ff',
         'modules': [
@@ -78,7 +78,7 @@ COURSES = {
         'description': 'Build intelligent systems. From neural networks to deep learning applications.',
         'duration': '16 Weeks',
         'level': 'Intermediate to Advanced',
-        'price': 'Rs. 55,000',
+        'price': 'Rs. 15000',
         'icon': 'brain',
         'color': '#ff006e',
         'modules': [
@@ -94,7 +94,7 @@ COURSES = {
         'description': 'Transform raw data into actionable insights using cutting-edge analytics.',
         'duration': '14 Weeks',
         'level': 'Intermediate',
-        'price': 'Rs. 50,000',
+        'price': 'Rs. 15000',
         'icon': 'database',
         'color': '#8338ec',
         'modules': [
@@ -169,14 +169,9 @@ def contact():
             )
             mail.send(msg)
             
-            # 2. Automated Auto-Reply to Student
-            selected_course_id = data.get('course')
-            course_info = COURSES.get(selected_course_id, {})
-            course_name = course_info.get('title', 'Advanced Technology Training')
-            course_price = course_info.get('price', 'Available upon request')
-            
+            # 2. Automated Auto-Reply to Student - with all course prices
             student_msg = Message(
-                subject=f"Welcome to EUNOIA! Details for {course_name}",
+                subject="Welcome to EUNOIA! Course Information & Pricing",
                 recipients=[data.get('email')],
                 html=f"""
                 <div style="font-family: 'Segoe UI', Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #050508; color: #ffffff; padding: 40px; border-radius: 20px; border: 1px solid #00d4ff;">
@@ -191,10 +186,29 @@ def contact():
                         Thank you for your interest in <strong>EUNOIA Technologies</strong>. We are thrilled to help you start your journey into the world of advanced technology!
                     </p>
                     
-                    <div style="background: rgba(0, 212, 255, 0.1); padding: 25px; border-radius: 12px; border-left: 4px solid #00d4ff; margin: 25px 0;">
-                        <h3 style="color: #00d4ff; margin-top: 0;">Course Details: {course_name}</h3>
-                        <p style="margin: 5px 0; color: #ffffff;"><strong>Duration:</strong> {course_info.get('duration', 'N/A')}</p>
-                        <p style="margin: 5px 0; color: #ffffff;"><strong>Price:</strong> <span style="font-size: 1.25rem; color: #ff006e; font-weight: bold;">{course_price}</span></p>
+                    <p style="line-height: 1.6; color: #cbd5e1;">
+                        Please find below our complete course offerings with pricing:
+                    </p>
+                    
+                    <div style="background: rgba(0, 212, 255, 0.1); padding: 20px; border-radius: 12px; border-left: 4px solid #00d4ff; margin: 20px 0;">
+                        <h3 style="color: #00d4ff; margin-top: 0;">🛡️ Cybersecurity Mastery</h3>
+                        <p style="margin: 5px 0; color: #ffffff;"><strong>Duration:</strong> 12 Weeks</p>
+                        <p style="margin: 5px 0; color: #ffffff;"><strong>Level:</strong> Beginner to Advanced</p>
+                        <p style="margin: 5px 0; color: #ffffff;"><strong>Price:</strong> <span style="font-size: 1.25rem; color: #ff006e; font-weight: bold;">Rs. 45,000</span></p>
+                    </div>
+                    
+                    <div style="background: rgba(255, 0, 110, 0.1); padding: 20px; border-radius: 12px; border-left: 4px solid #ff006e; margin: 20px 0;">
+                        <h3 style="color: #ff006e; margin-top: 0;">🤖 AI & Machine Learning</h3>
+                        <p style="margin: 5px 0; color: #ffffff;"><strong>Duration:</strong> 16 Weeks</p>
+                        <p style="margin: 5px 0; color: #ffffff;"><strong>Level:</strong> Intermediate to Advanced</p>
+                        <p style="margin: 5px 0; color: #ffffff;"><strong>Price:</strong> <span style="font-size: 1.25rem; color: #ff006e; font-weight: bold;">Rs. 55,000</span></p>
+                    </div>
+                    
+                    <div style="background: rgba(131, 56, 236, 0.1); padding: 20px; border-radius: 12px; border-left: 4px solid #8338ec; margin: 20px 0;">
+                        <h3 style="color: #8338ec; margin-top: 0;">📊 Advanced Data Science</h3>
+                        <p style="margin: 5px 0; color: #ffffff;"><strong>Duration:</strong> 14 Weeks</p>
+                        <p style="margin: 5px 0; color: #ffffff;"><strong>Level:</strong> Intermediate</p>
+                        <p style="margin: 5px 0; color: #ffffff;"><strong>Price:</strong> <span style="font-size: 1.25rem; color: #ff006e; font-weight: bold;">Rs. 50,000</span></p>
                     </div>
                     
                     <p style="line-height: 1.6; color: #cbd5e1;">
