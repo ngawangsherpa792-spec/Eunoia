@@ -43,13 +43,6 @@ app.config['MAIL_DEFAULT_SENDER'] = os.environ.get('MAIL_DEFAULT_SENDER', os.env
 mail = Mail(app)
 
 
-# Ensure tables are created
-# On Vercel, we must create tables on cold start if using SQLite in /tmp
-with app.app_context():
-    try:
-        db.create_all()
-    except Exception as e:
-        print(f"Database initialization error: {e}")
 
 class ContactMessage(db.Model):
     """Model for storing contact form submissions."""
@@ -63,6 +56,14 @@ class ContactMessage(db.Model):
 
     def __repr__(self):
         return f'<ContactMessage {self.email}>'
+
+# Ensure tables are created
+# On Vercel, we must create tables on cold start if using SQLite in /tmp
+with app.app_context():
+    try:
+        db.create_all()
+    except Exception as e:
+        print(f"Database initialization error: {e}")
 
 # Course data
 COURSES = {
