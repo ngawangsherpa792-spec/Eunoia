@@ -13,18 +13,22 @@ app = Flask(__name__, static_folder='static', static_url_path='/static')
 # Database Configuration
 basedir = os.path.abspath(os.path.dirname(__file__))
 
-# Vercel handles the file system as read-only, except for /tmp
-if os.environ.get('VERCEL'):
-    db_path = os.path.join('/tmp', 'eunoia.db')
-else:
-    db_path = os.path.join(basedir, 'eunoia.db')
-
 database_url = os.environ.get('DATABASE_URL')
 if database_url and database_url.startswith("postgres://"):
     database_url = database_url.replace("postgres://", "postgresql://", 1)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = database_url or \
-    'sqlite:///' + db_path
+# Vercel handles the file system as read-only, except for /tmp
+if os.environ.get('VERCEL'):
+    # If using local SQLite on Vercel, it MUST be in /tmp
+    if not database_url or database_url.startswith('sqlite'):
+        db_path = os.path.join('/tmp', 'eunoia.db')
+        app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + db_path
+    else:
+        app.config['SQLALCHEMY_DATABASE_URI'] = database_url
+else:
+    db_path = os.path.join(basedir, 'eunoia.db')
+    app.config['SQLALCHEMY_DATABASE_URI'] = database_url or 'sqlite:///' + db_path
+
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
@@ -39,11 +43,11 @@ app.config['MAIL_DEFAULT_SENDER'] = os.environ.get('MAIL_DEFAULT_SENDER', os.env
 mail = Mail(app)
 
 
-# Ensure tables are created (Skip during initialization on Vercel to prevent timeouts)
-if not os.environ.get('VERCEL'):
+# Ensure tables are created
+# On Vercel, we must create tables on cold start if using SQLite in /tmp
+with app.app_context():
     try:
-        with app.app_context():
-            db.create_all()
+        db.create_all()
     except Exception as e:
         print(f"Database initialization error: {e}")
 
