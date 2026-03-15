@@ -13,15 +13,20 @@ function initMagneticButtons() {
     const buttons = document.querySelectorAll('.magnetic-btn');
 
     buttons.forEach(btn => {
+        let rafId;
         btn.addEventListener('mousemove', (e) => {
-            const rect = btn.getBoundingClientRect();
-            const x = e.clientX - rect.left - rect.width / 2;
-            const y = e.clientY - rect.top - rect.height / 2;
+            if (rafId) cancelAnimationFrame(rafId);
+            rafId = requestAnimationFrame(() => {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
 
-            btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+                btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+            });
         });
 
         btn.addEventListener('mouseleave', () => {
+            if (rafId) cancelAnimationFrame(rafId);
             btn.style.transform = 'translate(0, 0)';
         });
     });

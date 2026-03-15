@@ -7,13 +7,14 @@ export function initForm() {
 
     // Real-time validation
     const inputs = contactForm.querySelectorAll('input, textarea, select');
+    const getErrorElement = (input) => input.parentElement.querySelector('.error-message');
+    
     inputs.forEach(input => {
-        input.addEventListener('input', () => {
-            validateInput(input);
-        });
-        input.addEventListener('blur', () => {
-            validateInput(input);
-        });
+        const errorElement = getErrorElement(input);
+        const validate = () => validateInput(input, errorElement);
+        
+        input.addEventListener('input', validate);
+        input.addEventListener('blur', validate);
     });
 
     contactForm.addEventListener('submit', async (e) => {
@@ -22,7 +23,7 @@ export function initForm() {
         // Validate all fields before submission
         let isFormValid = true;
         inputs.forEach(input => {
-            if (!validateInput(input)) {
+            if (!validateInput(input, getErrorElement(input))) {
                 isFormValid = false;
             }
         });
@@ -33,12 +34,17 @@ export function initForm() {
         }
 
         const submitBtn = contactForm.querySelector('button[type="submit"]');
-        const submitBtnText = submitBtn.querySelector('span');
-        const originalText = submitBtnText.innerText;
+        // specifically target the text span, not the glitch spans or icons
+        const submitBtnText = submitBtn.querySelector('span:not(.glitch-layer):not(.glitch) > span:first-child');
+        
+        let originalText = "Send Message";
+        if (submitBtnText) {
+            originalText = submitBtnText.innerText;
+        }
 
         try {
             submitBtn.disabled = true;
-            submitBtnText.innerText = 'SENDING...';
+            if (submitBtnText) submitBtnText.innerText = 'SENDING...';
 
             const formData = {
                 first_name: contactForm.querySelector('#first_name').value,
@@ -75,13 +81,12 @@ export function initForm() {
             showToast('Failed to connect to the server.', true);
         } finally {
             submitBtn.disabled = false;
-            submitBtnText.innerText = originalText;
+            if (submitBtnText) submitBtnText.innerText = originalText;
         }
     });
 }
 
-function validateInput(input) {
-    const errorElement = input.parentElement.querySelector('.error-message');
+function validateInput(input, errorElement) {
     let isValid = true;
 
     if (input.required && !input.value.trim()) {
