@@ -49,6 +49,7 @@ mail = Mail(app)
 
 class ContactMessage(db.Model):
     """Model for storing contact form submissions."""
+    __tablename__ = 'contact_message'
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(50), nullable=False)
     last_name = db.Column(db.String(50), nullable=False)
@@ -149,6 +150,14 @@ def get_courses():
 
 @app.route('/api/contact', methods=['POST'])
 def contact():
+    # Final safety check: Ensure tables exist before trying to save
+    # This is critical for Serverless SQLite in /tmp
+    with app.app_context():
+        try:
+            db.create_all()
+        except Exception as db_init_err:
+            print(f"Lazy DB Init Error: {db_init_err}")
+
     try:
         data = request.get_json()
         
