@@ -1,8 +1,9 @@
 from datetime import datetime, timezone
 from flask import Flask, render_template, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
-from flask_mailman import Mail, EmailMessage
 import os
+import smtplib
+from email.message import EmailMessage
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -43,7 +44,39 @@ app.config['MAIL_USERNAME'] = os.environ.get('MAIL_USERNAME')
 app.config['MAIL_PASSWORD'] = os.environ.get('MAIL_PASSWORD')
 app.config['MAIL_DEFAULT_SENDER'] = os.environ.get('MAIL_DEFAULT_SENDER', os.environ.get('MAIL_USERNAME'))
 
-mail = Mail(app)
+def send_email_smtp(subject, body, to_emails, from_email=None, html_body=None):
+    if not isinstance(to_emails, list):
+        to_emails = [to_emails]
+    
+    sender = from_email or app.config['MAIL_DEFAULT_SENDER']
+    msg = EmailMessage()
+    msg['Subject'] = subject
+    msg['From'] = sender
+    msg['To'] = ", ".join(to_emails)
+    
+    if html_body:
+        msg.set_content(body)
+        msg.add_alternative(html_body, subtype='html')
+    else:
+        msg.set_content(body)
+        
+    port = app.config['MAIL_PORT']
+    server_addr = app.config['MAIL_SERVER']
+    use_tls = app.config['MAIL_USE_TLS']
+    
+    if use_tls:
+        connection = smtplib.SMTP(server_addr, port, timeout=10)
+        connection.starttls()
+    else:
+        connection = smtplib.SMTP_SSL(server_addr, port, timeout=10)
+        
+    username = app.config.get('MAIL_USERNAME')
+    password = app.config.get('MAIL_PASSWORD')
+    if username and password:
+        connection.login(username, password)
+        
+    connection.send_message(msg)
+    connection.quit()
 
 
 
@@ -180,9 +213,7 @@ def contact():
         # Send Email
         try:
             admin_email = os.environ.get('ADMIN_EMAIL', 'eunoiacyberandaitechnologies@gmail.com')
-            msg = EmailMessage(
-                subject=f"New Contact Form Submission: {data.get('course', 'General Inquiry')}",
-                body=f"""
+            admin_body = f"""
                 New message from EUNOIA website:
                 
                 Name: {data.get('first_name')} {data.get('last_name')}
@@ -193,16 +224,16 @@ def contact():
                 {data.get('message')}
                 
                 Sent at: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
-                """,
-                from_email=admin_email,
-                to=[admin_email]
+                """
+            send_email_smtp(
+                subject=f"New Contact Form Submission: {data.get('course', 'General Inquiry')}",
+                body=admin_body,
+                to_emails=[admin_email],
+                from_email=admin_email
             )
-            msg.send()
             
             # 2. Automated Auto-Reply to Student - with all course prices
-            student_msg = EmailMessage(
-                subject="Welcome to EUNOIA! Course Information & Pricing",
-                body=f"""
+            student_html = f"""
                 <div style="font-family: 'Segoe UI', Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #050508; color: #ffffff; padding: 40px; border-radius: 20px; border: 1px solid #00d4ff;">
                     <div style="text-align: center; margin-bottom: 30px;">
                         <h1 style="color: #00d4ff; margin: 0; font-family: 'Orbitron', sans-serif; letter-spacing: 4px;">EUNOIA</h1>
@@ -252,12 +283,14 @@ def contact():
                         </p>
                     </div>
                 </div>
-                """,
+                """
+            send_email_smtp(
+                subject="Welcome to EUNOIA! Course Information & Pricing",
+                body="Welcome to EUNOIA! Please view this email in an HTML-compatible client.",
+                to_emails=[data.get('email')],
                 from_email=admin_email,
-                to=[data.get('email')]
+                html_body=student_html
             )
-            student_msg.content_subtype = "html"
-            student_msg.send()
             
         except Exception as mail_error:
 
