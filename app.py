@@ -257,21 +257,21 @@ def contact():
                         <h3 style="color: #00d4ff; margin-top: 0;">🛡️ Cybersecurity Mastery</h3>
                         <p style="margin: 5px 0; color: #ffffff;"><strong>Duration:</strong> 12 Weeks</p>
                         <p style="margin: 5px 0; color: #ffffff;"><strong>Level:</strong> Beginner to Advanced</p>
-                        <p style="margin: 5px 0; color: #ffffff;"><strong>Price:</strong> <span style="font-size: 1.25rem; color: #ff006e; font-weight: bold;">Rs. 45,000</span></p>
+                        <p style="margin: 5px 0; color: #ffffff;"><strong>Price:</strong> <span style="font-size: 1.25rem; color: #ff006e; font-weight: bold;">Rs. 15,000</span></p>
                     </div>
                     
                     <div style="background: rgba(255, 0, 110, 0.1); padding: 20px; border-radius: 12px; border-left: 4px solid #ff006e; margin: 20px 0;">
                         <h3 style="color: #ff006e; margin-top: 0;">🤖 AI & Machine Learning</h3>
                         <p style="margin: 5px 0; color: #ffffff;"><strong>Duration:</strong> 16 Weeks</p>
                         <p style="margin: 5px 0; color: #ffffff;"><strong>Level:</strong> Intermediate to Advanced</p>
-                        <p style="margin: 5px 0; color: #ffffff;"><strong>Price:</strong> <span style="font-size: 1.25rem; color: #ff006e; font-weight: bold;">Rs. 55,000</span></p>
+                        <p style="margin: 5px 0; color: #ffffff;"><strong>Price:</strong> <span style="font-size: 1.25rem; color: #ff006e; font-weight: bold;">Rs. 15,000</span></p>
                     </div>
                     
                     <div style="background: rgba(131, 56, 236, 0.1); padding: 20px; border-radius: 12px; border-left: 4px solid #8338ec; margin: 20px 0;">
                         <h3 style="color: #8338ec; margin-top: 0;">📊 Advanced Data Science</h3>
                         <p style="margin: 5px 0; color: #ffffff;"><strong>Duration:</strong> 14 Weeks</p>
                         <p style="margin: 5px 0; color: #ffffff;"><strong>Level:</strong> Intermediate</p>
-                        <p style="margin: 5px 0; color: #ffffff;"><strong>Price:</strong> <span style="font-size: 1.25rem; color: #ff006e; font-weight: bold;">Rs. 50,000</span></p>
+                        <p style="margin: 5px 0; color: #ffffff;"><strong>Price:</strong> <span style="font-size: 1.25rem; color: #ff006e; font-weight: bold;">Rs. 15,000</span></p>
                     </div>
                     
                     <p style="line-height: 1.6; color: #cbd5e1;">

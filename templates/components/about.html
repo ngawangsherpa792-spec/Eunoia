@@ -88,10 +88,16 @@
                                         style="background: radial-gradient(circle at 70% 70%, rgba(131,56,236,0.3) 0%, transparent 50%);">
                                     </div>
                                 </div>
-                                <div class="relative z-10 text-center">
-                                    <div class="font-orbitron font-black text-6xl sm:text-8xl text-white/10 mb-4">E
+                                <div class="relative z-10 flex flex-col items-center justify-center space-y-6 group/estd">
+                                    <div class="flex items-center space-x-4">
+                                        <div class="h-[1px] w-8 sm:w-12 bg-gradient-to-r from-transparent to-cyber-blue opacity-30"></div>
+                                        <img src="{{ url_for('static', filename='images/logo.webp') }}" alt="EUNOIA Logo"
+                                            class="w-16 h-16 sm:w-24 sm:h-24 object-contain transition-all duration-700 group-hover/estd:scale-110">
+                                        <div class="h-[1px] w-8 sm:w-12 bg-gradient-to-l from-transparent to-cyber-blue opacity-30"></div>
                                     </div>
-                                    <div class="font-rajdhani text-cyber-blue text-xl tracking-widest">EST. 2026
+                                    <div class="font-orbitron text-cyber-blue text-lg sm:text-xl tracking-[0.3em] font-bold uppercase flex items-center space-x-3">
+                                        <span class="text-gray-500">ESTD</span>
+                                        <span class="text-white">2026</span>
                                     </div>
                                 </div>
                             </div>
