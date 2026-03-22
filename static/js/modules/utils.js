@@ -5,6 +5,7 @@ export function initUtils() {
     initTextScramble();
     initGlitchTrigger();
     initCardTilt();
+    initParallaxIcons();
 }
 
 function initMagneticButtons() {
@@ -108,6 +109,33 @@ function initCardTilt() {
 
         card.addEventListener('mouseleave', () => {
             card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+        });
+    });
+}
+
+function initParallaxIcons() {
+    const icons = document.querySelectorAll('.parallax-icon');
+    if (!icons.length || window.matchMedia('(pointer: coarse)').matches) return;
+
+    window.addEventListener('mousemove', (e) => {
+        const mouseX = (e.clientX / window.innerWidth) - 0.5;
+        const mouseY = (e.clientY / window.innerHeight) - 0.5;
+
+        icons.forEach(icon => {
+            const strength = parseFloat(icon.dataset.strength) || 20;
+            const x = mouseX * strength;
+            const y = mouseY * strength;
+            
+            if (window.gsap) {
+                gsap.to(icon, {
+                    x: x,
+                    y: y,
+                    duration: 1,
+                    ease: 'power2.out'
+                });
+            } else {
+                icon.style.transform = `translate(${x}px, ${y}px)`;
+            }
         });
     });
 }
