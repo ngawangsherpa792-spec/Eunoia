@@ -22,13 +22,13 @@ function initMagneticButtons() {
                 const x = e.clientX - rect.left - rect.width / 2;
                 const y = e.clientY - rect.top - rect.height / 2;
 
-                btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+                btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px) scale(1.1)`;
             });
         });
 
         btn.addEventListener('mouseleave', () => {
             if (rafId) cancelAnimationFrame(rafId);
-            btn.style.transform = 'translate(0, 0)';
+            btn.style.transform = 'translate(0, 0) scale(1)';
         });
     });
 }
