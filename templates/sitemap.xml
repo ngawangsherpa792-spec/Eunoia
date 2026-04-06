@@ -1,20 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-  <!-- Home Page -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>{{ url_for('index', _external=True) }}</loc>
     <lastmod>{{ now }}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <image:image>
-      <image:loc>{{ url_for('static', filename='images/logo.webp', _external=True) }}</image:loc>
-      <image:title>EUNOIA Technologies Logo</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>{{ url_for('static', filename='images/og-banner.png', _external=True) }}</image:loc>
-      <image:title>EUNOIA Cybersecurity and AI Banner</image:title>
-    </image:image>
   </url>
 
   <!-- Course Pages -->
