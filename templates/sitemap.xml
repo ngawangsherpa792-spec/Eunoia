@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="https://eunoia-tech.vercel.app/"
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <!-- Home Page -->
   <url>
     <loc>{{ request.url_root }}</loc>
     <lastmod>{{ now }}</lastmod>
@@ -15,4 +16,14 @@
       <image:title>EUNOIA Cybersecurity & AI Banner</image:title>
     </image:image>
   </url>
+
+  <!-- Course Pages -->
+  {% for course_id, course in courses.items() %}
+  <url>
+    <loc>{{ request.url_root }}course/{{ course_id }}</loc>
+    <lastmod>{{ now }}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  {% endfor %}
 </urlset>

@@ -172,13 +172,32 @@ def index():
                          url=request.url,
                          year=datetime.now().year)
 
+@app.route('/course/<course_id>')
+def course_detail(course_id):
+    if course_id not in COURSES:
+        return render_template('index.html', 
+                             courses=COURSES, 
+                             url=request.url_root,
+                             year=datetime.now().year), 404
+    
+    course = COURSES[course_id]
+    return render_template('index.html', 
+                         courses=COURSES, 
+                         course_focus=course_id,
+                         title=f"{course['title']} | EUNOIA Technologies",
+                         description=course['description'],
+                         url=request.url,
+                         year=datetime.now().year)
+
 @app.route('/robots.txt')
 def robots():
     return render_template('robots.txt')
 
 @app.route('/sitemap.xml')
 def sitemap():
-    return render_template('sitemap.xml', now=datetime.now().strftime('%Y-%m-%d'))
+    return render_template('sitemap.xml', 
+                         courses=COURSES,
+                         now=datetime.now().strftime('%Y-%m-%d'))
 
 @app.route('/google3840c7b9febbe845.html')
 def google_verify():

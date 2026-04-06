@@ -51,16 +51,22 @@
                         {% endfor %}
                     </div>
 
-                    <a href="#contact"
-                        class="magnetic-btn btn-glitch w-full py-4 rounded-xl font-rajdhani font-bold text-white transition-all hover:opacity-90 group inline-flex items-center justify-center"
-                        style="background: var(--course-color);" data-text="Enroll Now">
-                        <span class="glitch-layer glitch" data-text="Enroll Now"></span>
-                        <span class="flex items-center justify-center space-x-2">
-                            <span>Enroll Now</span>
-                            <i data-lucide="arrow-right"
-                                class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
-                        </span>
-                    </a>
+                    <div class="flex flex-col sm:flex-row gap-4 mb-8">
+                        <a href="#contact"
+                            class="magnetic-btn btn-glitch flex-1 py-4 rounded-xl font-rajdhani font-bold text-white transition-all hover:opacity-90 group inline-flex items-center justify-center"
+                            style="background: var(--course-color);" data-text="Enroll Now">
+                            <span class="glitch-layer glitch" data-text="Enroll Now"></span>
+                            <span class="flex items-center justify-center space-x-2">
+                                <span>Enroll Now</span>
+                                <i data-lucide="arrow-right"
+                                    class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+                            </span>
+                        </a>
+                        <a href="/course/{{ key }}"
+                            class="magnetic-btn border border-white/20 hover:border-white/40 flex-1 py-4 rounded-xl font-rajdhani font-bold text-white transition-all bg-white/5 inline-flex items-center justify-center group">
+                            <span>View Syllabus</span>
+                        </a>
+                    </div>
                 </div>
                 {% endfor %}
             </div>
