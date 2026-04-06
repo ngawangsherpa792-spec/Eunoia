@@ -1,25 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <!-- Home Page -->
   <url>
-    <loc>{{ request.url_root }}</loc>
+    <loc>https://eunoia-tech.vercel.app/</loc>
     <lastmod>{{ now }}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <image:image>
-      <image:loc>{{ request.url_root }}static/images/logo.webp</image:loc>
-      <image:title>EUNOIA Technologies Logo</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>{{ request.url_root }}static/images/og-banner.png</image:loc>
-      <image:title>EUNOIA Cybersecurity and AI Banner</image:title>
-    </image:image>
   </url>
 
   <!-- Course Pages -->
   {% for key, course in courses.items() %}
   <url>
-    <loc>{{ request.url_root }}course/{{ key }}</loc>
+    <loc>https://eunoia-tech.vercel.app/course/{{ key }}</loc>
     <lastmod>{{ now }}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

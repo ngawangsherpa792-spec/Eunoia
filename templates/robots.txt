@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: {{ request.url_root }}sitemap.xml
+Sitemap: https://eunoia-tech.vercel.app/sitemap.xml
