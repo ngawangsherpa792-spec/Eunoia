@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="https://eunoia-tech.vercel.app/"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>{{ request.url_root }}</loc>
     <lastmod>{{ now }}</lastmod>
-    <changefreq>monthly</changefreq>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>{{ request.url_root }}static/images/logo.webp</image:loc>
+      <image:title>EUNOIA Technologies Logo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>{{ request.url_root }}static/images/og-banner.png</image:loc>
+      <image:title>EUNOIA Cybersecurity & AI Banner</image:title>
+    </image:image>
   </url>
 </urlset>

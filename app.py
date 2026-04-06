@@ -180,6 +180,10 @@ def robots():
 def sitemap():
     return render_template('sitemap.xml', now=datetime.now().strftime('%Y-%m-%d'))
 
+@app.route('/google3840c7b9febbe845.html')
+def google_verify():
+    return render_template('google3840c7b9febbe845.html')
+
 @app.route('/api/courses')
 def get_courses():
     return jsonify(COURSES)
