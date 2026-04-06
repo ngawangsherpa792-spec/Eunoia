@@ -1,5 +1,5 @@
 from datetime import datetime, timezone
-from flask import Flask, render_template, jsonify, request
+from flask import Flask, render_template, jsonify, request, Response
 from flask_sqlalchemy import SQLAlchemy
 import os
 import smtplib
@@ -191,17 +191,20 @@ def course_detail(course_id):
 
 @app.route('/robots.txt')
 def robots():
-    return render_template('robots.txt')
+    return Response(render_template('robots.txt'), 
+                    mimetype='text/plain')
 
 @app.route('/sitemap.xml')
 def sitemap():
-    return render_template('sitemap.xml', 
-                         courses=COURSES,
-                         now=datetime.now().strftime('%Y-%m-%d'))
+    return Response(render_template('sitemap.xml', 
+                                  courses=COURSES,
+                                  now=datetime.now().strftime('%Y-%m-%d')), 
+                    mimetype='application/xml')
 
 @app.route('/google3840c7b9febbe845.html')
 def google_verify():
-    return render_template('google3840c7b9febbe845.html')
+    return Response(render_template('google3840c7b9febbe845.html'), 
+                    mimetype='text/html')
 
 @app.route('/api/courses')
 def get_courses():
