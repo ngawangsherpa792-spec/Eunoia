@@ -3,16 +3,16 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <!-- Home Page -->
   <url>
-    <loc>{{ request.url_root }}</loc>
+    <loc>{{ url_for('index', _external=True) }}</loc>
     <lastmod>{{ now }}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
-      <image:loc>{{ request.url_root }}static/images/logo.webp</image:loc>
+      <image:loc>{{ url_for('static', filename='images/logo.webp', _external=True) }}</image:loc>
       <image:title>EUNOIA Technologies Logo</image:title>
     </image:image>
     <image:image>
-      <image:loc>{{ request.url_root }}static/images/og-banner.png</image:loc>
+      <image:loc>{{ url_for('static', filename='images/og-banner.png', _external=True) }}</image:loc>
       <image:title>EUNOIA Cybersecurity & AI Banner</image:title>
     </image:image>
   </url>
@@ -20,7 +20,7 @@
   <!-- Course Pages -->
   {% for course_id, course in courses.items() %}
   <url>
-    <loc>{{ request.url_root }}course/{{ course_id }}</loc>
+    <loc>{{ url_for('course_detail', course_id=course_id, _external=True) }}</loc>
     <lastmod>{{ now }}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
