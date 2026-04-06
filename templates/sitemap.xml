@@ -13,7 +13,7 @@
     </image:image>
     <image:image>
       <image:loc>{{ url_for('static', filename='images/og-banner.png', _external=True) }}</image:loc>
-      <image:title>EUNOIA Cybersecurity & AI Banner</image:title>
+      <image:title>EUNOIA Cybersecurity &amp; AI Banner</image:title>
     </image:image>
   </url>
 
