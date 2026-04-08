@@ -1,10 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet type="text/xsl" href="/static/sitemap.xsl"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-        <loc>{{ page.loc }}</loc>
-        <lastmod>{{ page.lastmod }}</lastmod>
-        <changefreq>{{ page.changefreq }}</changefreq>
-        <priority>{{ page.priority }}</priority>
+        <loc>https://eunoia-tech.vercel.app/</loc>
+        <lastmod>2026-04-08</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://eunoia-tech.vercel.app/course/cybersecurity</loc>
+        <lastmod>2026-04-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://eunoia-tech.vercel.app/course/ai-ml</loc>
+        <lastmod>2026-04-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://eunoia-tech.vercel.app/course/data-science</loc>
+        <lastmod>2026-04-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
     </url>
 </urlset>
