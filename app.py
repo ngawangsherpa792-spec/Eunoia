@@ -194,14 +194,32 @@ def robots():
     return Response(render_template('robots.txt'), 
                     mimetype='text/plain')
 
+from flask import url_for
+
 @app.route('/sitemap.xml')
 def sitemap():
-    """Generates an XML sitemap for search engines."""
-    return Response(render_template('sitemap.xml', 
-                                  courses=COURSES,
-                                  base_url=request.url_root.rstrip('/'),
-                                  now=datetime.now().strftime('%Y-%m-%d')), 
-                    mimetype='application/xml')
+    """Generates a robust XML sitemap for search engines."""
+    pages = []
+    
+    # Home Page
+    pages.append({
+        'loc': url_for('index', _external=True),
+        'lastmod': datetime.now().strftime('%Y-%m-%d'),
+        'changefreq': 'weekly',
+        'priority': '1.0'
+    })
+    
+    # Course Pages
+    for key in COURSES:
+        pages.append({
+            'loc': url_for('course_detail', course_id=key, _external=True),
+            'lastmod': datetime.now().strftime('%Y-%m-%d'),
+            'changefreq': 'monthly',
+            'priority': '0.8'
+        })
+        
+    return Response(render_template('sitemap.xml', pages=pages), 
+                    mimetype='text/xml')
 
 @app.route('/google3840c7b9febbe845.html')
 def google_verify():
