@@ -200,6 +200,12 @@ def sitemap():
     return Response(render_template('sitemap.xml'), 
                     mimetype='text/xml')
 
+@app.route('/sitemap.xsl')
+def sitemap_xsl():
+    """Serves the sitemap stylesheet with the correct MIME type."""
+    return Response(render_template('sitemap.xsl'), 
+                    mimetype='text/xsl')
+
 @app.route('/google3840c7b9febbe845.html')
 def google_verify():
     return Response(render_template('google3840c7b9febbe845.html'), 
