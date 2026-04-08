@@ -196,8 +196,10 @@ def robots():
 
 @app.route('/sitemap.xml')
 def sitemap():
+    """Generates an XML sitemap for search engines."""
     return Response(render_template('sitemap.xml', 
                                   courses=COURSES,
+                                  base_url=request.url_root.rstrip('/'),
                                   now=datetime.now().strftime('%Y-%m-%d')), 
                     mimetype='application/xml')
 
