@@ -116,10 +116,10 @@ export function showToast(message, isError = false) {
     if (isError) {
         toastIcon.setAttribute('data-lucide', 'circle-x');
         toastIcon.classList.remove('text-cyber-blue');
-        toastIcon.classList.add('text-cyber-pink');
+        toastIcon.classList.add('text-cyber-green');
     } else {
         toastIcon.setAttribute('data-lucide', 'check-circle');
-        toastIcon.classList.remove('text-cyber-pink');
+        toastIcon.classList.remove('text-cyber-green');
         toastIcon.classList.add('text-cyber-blue');
     }
 

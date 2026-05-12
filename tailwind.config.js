@@ -9,8 +9,8 @@ module.exports = {
             colors: {
                 'cyber-blue': '#00d4ff',
                 'cyber-purple': '#8338ec',
-                'cyber-pink': '#ff006e',
-                'cyber-orange': '#fb5607',
+                'cyber-green': '#1fa55b',
+                'cyber-turkoish': '#2dc7a1',
                 'cyber-dark': '#0a0a0f',
                 'cyber-darker': '#050508',
                 'cyber-gray': '#1a1a2e',
