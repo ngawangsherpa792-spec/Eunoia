@@ -8,14 +8,15 @@
 
     <!-- SEO Meta Tags -->
     <title>{% block title %}EUNOIA | Cyber & AI Technologies{% endblock %}</title>
-    <meta name="title" content="{% block seo_title %}EUNOIA | Cyber & AI Technologies - Innovation Starts Now{% endblock %}">
+    <meta name="title"
+        content="{% block seo_title %}EUNOIA | Cyber & AI Technologies - Innovation Starts Now{% endblock %}">
     <meta name="description"
         content="{% block description %}EUNOIA Cyber & AI Technologies in Kathmandu, Nepal. Premium courses in Ethical Hacking, Cybersecurity, AI, and Machine Learning. Start your tech journey today!{% endblock %}">
     <meta name="keywords"
         content="{% block keywords %}Cybersecurity courses Nepal, AI training Kathmandu, Machine Learning Nepal, Ethical Hacking Kathmandu, EUNOIA Technologies, Tech Education Nepal{% endblock %}">
     <meta name="author" content="EUNOIA Technologies">
     <meta name="robots" content="index, follow">
-    <meta name="google-site-verification" content="google3840c7b9febbe845.html" />
+    <meta name="google-site-verification" content="K44xLnWQ2o9qiEl45nG1moN8n4NUL5zqZgyVx40eFQs" />
     <link rel="canonical" href="{{ url }}">
 
     <!-- Local SEO (Nepal) -->
@@ -27,7 +28,8 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url }}">
-    <meta property="og:title" content="{% block og_title %}EUNOIA | Cyber & AI Technologies - Innovation Starts Now{% endblock %}">
+    <meta property="og:title"
+        content="{% block og_title %}EUNOIA | Cyber & AI Technologies - Innovation Starts Now{% endblock %}">
     <meta property="og:description"
         content="{% block og_description %}EUNOIA Cyber & AI Technologies in Kathmandu, Nepal. Premium courses in Ethical Hacking, Cybersecurity, AI, and Machine Learning.{% endblock %}">
     <meta property="og:image" content="{{ request.url_root }}static/images/og-banner.png">
@@ -594,7 +596,7 @@
     {% block scripts %}
     <script type="module" src="{{ url_for('static', filename='js/main.js') }}"></script>
     {% endblock %}
-    
+
     <!-- Custom Cursor -->
     <div class="custom-cursor hidden md:block" id="cursor"></div>
 </body>
